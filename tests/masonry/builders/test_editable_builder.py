@@ -8,8 +8,9 @@ from pathlib import Path
 
 import pytest
 
+from cleo.io.null_io import NullIO
+
 from poetry.factory import Factory
-from poetry.io.null_io import NullIO
 from poetry.masonry.builders.editable import EditableBuilder
 from poetry.utils.env import EnvManager
 from poetry.utils.env import MockEnv

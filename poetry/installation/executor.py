@@ -10,10 +10,11 @@ from concurrent.futures import wait
 from pathlib import Path
 from subprocess import CalledProcessError
 
+from cleo.io.null_io import NullIO
+
 from poetry.core.packages.file_dependency import FileDependency
 from poetry.core.packages.utils.link import Link
 from poetry.core.pyproject.toml import PyProjectTOML
-from poetry.io.null_io import NullIO
 from poetry.utils._compat import decode
 from poetry.utils.env import EnvCommandError
 from poetry.utils.helpers import safe_rmtree
@@ -209,7 +210,7 @@ class Executor(object):
                 raise KeyboardInterrupt
         except Exception as e:
             try:
-                from clikit.ui.components.exception_trace import ExceptionTrace
+                from cleo.ui.exception_trace import ExceptionTrace
 
                 if not self.supports_fancy_output():
                     io = self._io
@@ -621,10 +622,10 @@ class Executor(object):
             if wheel_size is None:
                 self._write(operation, message)
             else:
-                from clikit.ui.components.progress_bar import ProgressBar
+                from cleo.ui.progress_bar import ProgressBar
 
                 progress = ProgressBar(
-                    self._sections[id(operation)].output, max=int(wheel_size)
+                    self._sections[id(operation)].error_output, max=int(wheel_size)
                 )
                 progress.set_format(message + " <b>%percent%%</b>")
 

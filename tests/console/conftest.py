@@ -5,10 +5,10 @@ from pathlib import Path
 import pytest
 
 from cleo import ApplicationTester
+from cleo.io.null_io import NullIO
 
 from poetry.factory import Factory
 from poetry.installation.noop_installer import NoopInstaller
-from poetry.io.null_io import NullIO
 from poetry.repositories import Pool
 from poetry.utils.env import MockEnv
 from tests.helpers import TestApplication
@@ -98,7 +98,7 @@ def poetry(repo, project_directory, config):
 @pytest.fixture
 def app(poetry):
     app_ = TestApplication(poetry)
-    app_.config.set_terminate_after_run(False)
+    app_.auto_exits(False)
 
     return app_
 

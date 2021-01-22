@@ -5,8 +5,9 @@ import httpretty
 import pytest
 import requests
 
+from cleo.io.null_io import NullIO
+
 from poetry.installation.authenticator import Authenticator
-from poetry.io.null_io import NullIO
 
 
 @pytest.fixture()
